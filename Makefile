@@ -12,4 +12,4 @@ build:
 
 .PHONY: export
 export:
-	docker compose run --rm -u node node bash -c "cd src/ && npm ci && npm run export"
+	docker compose run --rm node bash -c "cd src/ && npm ci && npm run export"
