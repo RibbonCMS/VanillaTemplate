@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  node:
+    image: node:16-buster-slim
+    container_name: ribboncms-side-f
+    volumes:
+      - ./:/usr/src/app
+    working_dir: /usr/src/app
+    ports:
+      - 3000:3000
+    tty: true
