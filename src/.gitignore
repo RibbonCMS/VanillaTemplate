@@ -33,3 +33,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# RibbonCMS
+contents/
+lib/consts.js
+public/
+!public/**/favicon.ico
