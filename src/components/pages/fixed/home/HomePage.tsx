@@ -7,8 +7,8 @@ export const HomePage = ({
 }) => {
   return (
     <>
-      <h1>HomePage</h1>
-      <div>{homeJson.hoge}</div>
+      <h1>{homeJson.site_title}</h1>
+      <div>{homeJson.site_description}</div>
     </>
   )
 };

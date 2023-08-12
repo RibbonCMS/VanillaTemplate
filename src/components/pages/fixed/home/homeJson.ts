@@ -1,9 +1,11 @@
 export type HomeJson = {
-    hoge: string
+    site_description: string,
+    site_title: string,
 };
 
 export const homeJsonPath = "contents/fixed/index.json";
 
 export const defaultHomeJson: HomeJson = {
-    hoge: "bar"
+    site_description: "This is site description",
+    site_title: "Your home page",
 };
