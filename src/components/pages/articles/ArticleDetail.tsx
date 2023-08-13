@@ -1,5 +1,6 @@
 import css from "styled-jsx/css"
 import { Article } from "../../../lib/articles/articles"
+import { CustomReactMarkdown } from "../../CustomReactMarkdown"
 
 export const ArticleDetail = ({
   article,
@@ -33,9 +34,7 @@ export const ArticleDetail = ({
           <td>{article.description}</td>
         </tr>
       </table>
-      <p>
-        {article.content}
-      </p>
+      <CustomReactMarkdown>{article.content}</CustomReactMarkdown>
     </>
   )
 }
