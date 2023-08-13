@@ -37,5 +37,8 @@ next-env.d.ts
 # RibbonCMS
 contents/
 lib/consts.js
-public/
-!public/**/favicon.ico
+public/static/images/articles/
+public/static/images/config/
+public/static/images/external_ogp/
+public/static/images/thumbnail/
+!public/static/images/favicon.ico
