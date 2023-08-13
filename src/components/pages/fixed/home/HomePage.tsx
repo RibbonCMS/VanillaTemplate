@@ -1,3 +1,4 @@
+import { CustomReactMarkdown } from "../../../CustomReactMarkdown";
 import { HomeJson } from "./homeJson";
 
 export const Home = ({
@@ -8,7 +9,7 @@ export const Home = ({
   return (
     <>
       <h1>{homeJson.site_title}</h1>
-      <div>{homeJson.site_description}</div>
+      <CustomReactMarkdown>{homeJson.site_description}</CustomReactMarkdown>
     </>
   )
 };
