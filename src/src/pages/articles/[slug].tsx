@@ -30,6 +30,25 @@ const ArticlePage: NextPage<Props> = ({
         <meta name="description" content={`${config.site_introduction}`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/static/images/favicon.ico" />
+
+        <meta
+          property="og:title"
+          content={`${article.title} | ${config.blog_title}`}
+        />
+        <meta property="og:description" content={article.description} />
+        <meta
+          property="og:image"
+          content={`${config.root_url}/static/images/thumbnail/${article.slug}.jpg`}
+        />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content={config.blog_title} />
+        <meta property="og:url" content={`${config.root_url}/article/${article.slug}`} />
+
+        <meta
+          name="twitter:image"
+          content={`${config.root_url}/static/images/thumbnail/${article.slug}.jpg`}
+        />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <main className={`${inter.className}`}>
         <MenuBar />
