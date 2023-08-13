@@ -10,5 +10,5 @@ assignees: ""
 site_description: |-
   # site_description here
   - Can use markdown
-site_header_title: ""
+site_title: ""
 ```
