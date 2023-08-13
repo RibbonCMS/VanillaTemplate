@@ -3,7 +3,7 @@ export type HomeJson = {
     site_title: string,
 };
 
-export const homeJsonPath = "contents/fixed/index.json";
+export const homeJsonPath = "contents/etc/home.json";
 
 export const defaultHomeJson: HomeJson = {
     site_description: "This is site description",

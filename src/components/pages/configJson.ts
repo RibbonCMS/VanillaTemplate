@@ -10,7 +10,7 @@ export type ConfigJson = {
     author_introduction: string
 };
 
-export const configJsonPath = "contents/config.json";
+export const configJsonPath = "contents/etc/config.json";
 
 export const defaultConfigJson: ConfigJson = {
     blog_title: "Your blog title",
