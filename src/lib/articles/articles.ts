@@ -137,7 +137,7 @@ export const generateArticlesMap = (articles: Article[]): ArticlesMap => {
  */
 export const extractArticleLink = (content: string): string[] => {
   const articleLinkPattern = /^#(\d+)\s*$/gm
-  const slugs: string[] = [...content.matchAll(articleLinkPattern)].map(
+  const slugs: string[] = Array.from(content.matchAll(articleLinkPattern)).map(
     (match) => {
       return match[1] // matched text
     },
