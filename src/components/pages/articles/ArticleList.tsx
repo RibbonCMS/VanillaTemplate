@@ -1,14 +1,18 @@
-import { ConfigJson, defaultConfigJson, configJsonPath } from '../configJson'
+import Link from 'next/link'
 
-export const ArticleList = ({
-  configJson,
-}: {
-  configJson: ConfigJson
-}) => {
+export const ArticleList = () => {
+  const articleList = ["article1", "article2", "article3"]
+
   return (
     <>
       <h1>Article List</h1>
-      <div>aaa</div>
+      <ul>
+        {articleList.map((article) => (
+          <li key={article}>
+            <Link href={`/articles/slug`} passHref>{article}</Link>
+          </li>
+        ))}
+      </ul>
     </>
   )
 }

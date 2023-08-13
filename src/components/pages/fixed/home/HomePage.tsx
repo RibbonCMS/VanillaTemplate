@@ -1,6 +1,6 @@
 import { HomeJson } from "./homeJson";
 
-export const HomePage = ({
+export const Home = ({
   homeJson,
 }: {
   homeJson: HomeJson

@@ -1,14 +1,18 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import { HomePage } from '../../components/pages/fixed/home/HomePage'
+import { Home } from '../../components/pages/fixed/home/HomePage'
 import { readJson } from '../../lib/common/readJson'
 import { HomeJson, defaultHomeJson, homeJsonPath } from '../../components/pages/fixed/home/homeJson'
 import { ConfigJson, defaultConfigJson, configJsonPath } from '../../components/pages/configJson'
+import { InferGetStaticPropsType, NextPage } from 'next'
+import { MenuBar } from '../../components/MenuBar'
+
+type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 const inter = Inter({ subsets: ['latin'] })
 
-const Home = ({
+const HomePage: NextPage<Props> = ({
   configJson,
   homeJson
 }: {
@@ -24,7 +28,8 @@ const Home = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${inter.className}`}>
-        <HomePage
+        <MenuBar />
+        <Home
           homeJson={homeJson}
         />
       </main>
@@ -40,4 +45,4 @@ export const getStaticProps = async () => {
   }
 };
 
-export default Home;
+export default HomePage;
