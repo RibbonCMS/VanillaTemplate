@@ -12,8 +12,8 @@ export const ArticleList = ({
     <>
       <h1>Article List</h1>
       <ul>
-        {articles.map((article: Article) => (
-          <li key={article as unknown as Key}>
+        {articles.map((article: Article, index) => (
+          <li key={index}>
             <Link href={`/articles/${article.slug}`} passHref>{article.title}</Link>
           </li>
         ))}

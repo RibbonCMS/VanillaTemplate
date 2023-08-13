@@ -108,3 +108,39 @@ export const readArticlesWithTargetFields = (targetFields: string[] = []): Artic
     .sort((a, b) => (a.posted_at > b.posted_at ? -1 : 1))
   return articles
 }
+/**
+ * Convert Article[] into ArticlesMap
+ * @param articles 記事のリスト
+ * @returns 記事マップ
+ */
+export const generateArticlesMap = (articles: Article[]): ArticlesMap => {
+  const postsMap: ArticlesMap = Object.create(null)
+  articles.forEach((post, _) => {
+    postsMap[post.slug] = {
+      slug: post.slug,
+      title: post.title,
+      tags: post.tags,
+      posted_at: post.posted_at,
+      content: '',
+      updated_at: '',
+      description: '',
+    }
+  })
+  return postsMap
+}
+
+
+/**
+ * Extract article link (e.g. #1 ) from text.
+ * @param content article content
+ * @returns article link list
+ */
+export const extractArticleLink = (content: string): string[] => {
+  const articleLinkPattern = /^#(\d+)\s*$/gm
+  const slugs: string[] = [...content.matchAll(articleLinkPattern)].map(
+    (match) => {
+      return match[1] // matched text
+    },
+  )
+  return slugs
+}

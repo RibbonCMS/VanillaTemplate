@@ -5,7 +5,9 @@ import { ConfigJson, defaultConfigJson, configJsonPath } from '../../../componen
 import { InferGetStaticPropsType, NextPage } from "next"
 import { MenuBar } from '../../../components/MenuBar'
 import { ArticleDetail } from '../../../components/pages/articles/ArticleDetail'
-import { Article, readArticleBySlug, readArticlesWithTargetFields } from '../../../lib/articles/articles'
+import { Article, extractArticleLink, generateArticlesMap, readArticleBySlug, readArticlesWithTargetFields } from '../../../lib/articles/articles'
+import { readRelatedJson } from '../../../lib/articles/relatedArticles'
+import { RelatedArticles } from '../../../components/pages/articles/RelatedArticles'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -14,9 +16,11 @@ const inter = Inter({ subsets: ['latin'] })
 const ArticlePage: NextPage<Props> = ({
   config,
   article,
+  relatedArticles,
 }: {
   config: ConfigJson,
   article: Article,
+  relatedArticles: Article[],
 }) => {
   return (
     <>
@@ -30,6 +34,9 @@ const ArticlePage: NextPage<Props> = ({
         <MenuBar />
         <ArticleDetail
           article={article}
+        />
+        <RelatedArticles
+          relatedArticles={relatedArticles}
         />
       </main>
     </>
@@ -64,8 +71,21 @@ export const getStaticProps = async ({ params }: any) => {
       'description',
     ]
   )
+
+  // 関連記事のリストを取得
+  const linkedSlugs = extractArticleLink(article.content)
+  const relatedSlugs = readRelatedJson()[article.slug]
+  const articlesMap = generateArticlesMap(
+    readArticlesWithTargetFields(['slug', 'title', 'posted_at', 'tags']).filter(
+      (_article) => linkedSlugs.includes(_article.slug) || relatedSlugs.includes(_article.slug),
+    )
+  )
+  const relatedArticles = relatedSlugs.map((slug) => {
+    return articlesMap[slug]
+  })
+
   return {
-    props: { config, article }
+    props: { config, article, relatedArticles }
   }
 }
 
