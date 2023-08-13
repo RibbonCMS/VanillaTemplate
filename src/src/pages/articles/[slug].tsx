@@ -8,6 +8,7 @@ import { ArticleDetail } from '../../../components/pages/articles/ArticleDetail'
 import { Article, extractArticleLink, generateArticlesMap, readArticleBySlug, readArticlesWithTargetFields } from '../../../lib/articles/articles'
 import { readRelatedJson } from '../../../lib/articles/relatedArticles'
 import { RelatedArticles } from '../../../components/pages/articles/RelatedArticles'
+import { Copyright } from '../../../components/Copyright'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -39,6 +40,9 @@ const ArticlePage: NextPage<Props> = ({
           relatedArticles={relatedArticles}
         />
       </main>
+      <footer>
+        <Copyright config={config} />
+      </footer>
     </>
   )
 }

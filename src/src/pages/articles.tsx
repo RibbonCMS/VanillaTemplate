@@ -6,6 +6,7 @@ import { ArticleList } from '../../components/pages/articles/ArticleList'
 import { InferGetStaticPropsType, NextPage } from 'next'
 import { MenuBar } from '../../components/MenuBar'
 import { Article, readArticlesWithTargetFields } from '../../lib/articles/articles'
+import { Copyright } from '../../components/Copyright'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -32,6 +33,9 @@ const ArticleListPage: NextPage<Props> = ({
           articles={articles}
         />
       </main>
+      <footer>
+        <Copyright config={config} />
+      </footer>
     </>
   )
 }

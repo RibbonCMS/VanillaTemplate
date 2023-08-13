@@ -7,6 +7,7 @@ import { HomeJson, defaultHomeJson, homeJsonPath } from '../../components/pages/
 import { ConfigJson, defaultConfigJson, configJsonPath } from '../../components/pages/configJson'
 import { InferGetStaticPropsType, NextPage } from 'next'
 import { MenuBar } from '../../components/MenuBar'
+import { Copyright } from '../../components/Copyright'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -33,6 +34,9 @@ const HomePage: NextPage<Props> = ({
           homeJson={homeJson}
         />
       </main>
+      <footer>
+        <Copyright config={config} />
+      </footer>
     </>
   )
 }
