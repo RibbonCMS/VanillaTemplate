@@ -1,15 +1,20 @@
 import Link from 'next/link'
+import { Article } from '../../../lib/articles/articles'
+import { Key } from 'react'
 
-export const ArticleList = () => {
-  const articleList = ["article1", "article2", "article3"]
+export const ArticleList = ({
+  articles,
+}: {
+  articles: Article[],
+}) => {
 
   return (
     <>
       <h1>Article List</h1>
       <ul>
-        {articleList.map((article) => (
-          <li key={article}>
-            <Link href={`/articles/slug`} passHref>{article}</Link>
+        {articles.map((article: Article) => (
+          <li key={article as unknown as Key}>
+            <Link href={`/articles/${article.slug}`} passHref>{article.title}</Link>
           </li>
         ))}
       </ul>

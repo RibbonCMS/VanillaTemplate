@@ -13,17 +13,17 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>
 const inter = Inter({ subsets: ['latin'] })
 
 const HomePage: NextPage<Props> = ({
-  configJson,
+  config,
   homeJson
 }: {
-  configJson: ConfigJson,
+  config: ConfigJson,
   homeJson: HomeJson
 }) => {
   return (
     <>
       <Head>
-        <title>{`Home | ${configJson.blog_title}`}</title>
-        <meta name="description" content={`${configJson.site_introduction}`} />
+        <title>{`Home | ${config.blog_title}`}</title>
+        <meta name="description" content={`${config.site_introduction}`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -38,10 +38,10 @@ const HomePage: NextPage<Props> = ({
 }
 
 export const getStaticProps = async () => {
-  const configJson = readJson<ConfigJson>(configJsonPath, defaultConfigJson);
+  const config = readJson<ConfigJson>(configJsonPath, defaultConfigJson);
   const homeJson = readJson<HomeJson>(homeJsonPath, defaultHomeJson);
   return {
-    props: { configJson, homeJson }
+    props: { config, homeJson }
   }
 };
 
