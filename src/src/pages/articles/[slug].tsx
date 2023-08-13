@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import { readJson } from '../../../lib/common/readJson'
 import { ConfigJson, defaultConfigJson, configJsonPath } from '../../../components/pages/configJson'
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from "next"
+import { InferGetStaticPropsType, NextPage } from "next"
 import { MenuBar } from '../../../components/MenuBar'
 import { ArticleDetail } from '../../../components/pages/articles/ArticleDetail'
 import { Article, readArticleBySlug, readArticlesWithTargetFields } from '../../../lib/articles/articles'
@@ -12,17 +12,17 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>
 const inter = Inter({ subsets: ['latin'] })
 
 const ArticlePage: NextPage<Props> = ({
-  configJson,
+  config,
   article,
 }: {
-  configJson: ConfigJson,
+  config: ConfigJson,
   article: Article,
 }) => {
   return (
     <>
       <Head>
-        <title>{`slug | ${configJson.blog_title}`}</title>
-        <meta name="description" content={`${configJson.site_introduction}`} />
+        <title>{`slug | ${config.blog_title}`}</title>
+        <meta name="description" content={`${config.site_introduction}`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -36,7 +36,7 @@ const ArticlePage: NextPage<Props> = ({
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths = async () => {
   const articles = readArticlesWithTargetFields(['slug'])
   return {
     paths: articles.map((article) => {
@@ -50,8 +50,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }: any) => {
-  const configJson = readJson<ConfigJson>(configJsonPath, defaultConfigJson);
+export const getStaticProps = async ({ params }: any) => {
+  const config = readJson<ConfigJson>(configJsonPath, defaultConfigJson);
   const article = readArticleBySlug(
     params.slug,
     [
@@ -65,7 +65,7 @@ export const getStaticProps: GetStaticProps = async ({ params }: any) => {
     ]
   )
   return {
-    props: { configJson, article }
+    props: { config, article }
   }
 }
 
